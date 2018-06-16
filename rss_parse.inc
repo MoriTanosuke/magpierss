@@ -187,6 +187,10 @@ class MagpieRSS {
                 $this->current_item['about'] = $attrs['rdf:about']; 
             }
         }
+        elseif ($el == 'source') {
+            // if we are in an ATOM source element, make sure we don't override 'title' and other elements from feed item
+            $this->initem = false;
+        }
         
         // if we're in the default namespace of an RSS feed,
         //  record textinput or image fields
